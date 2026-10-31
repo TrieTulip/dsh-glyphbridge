@@ -15,6 +15,10 @@ node_modules/
 .probe/web-boot*.log
 .probe/web-*.yml
 
+# Local publish scratch
+*.tgz
+.npm-cache/
+
 # Editor / OS noise
 .DS_Store
 Thumbs.db
