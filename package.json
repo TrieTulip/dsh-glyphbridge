@@ -24,6 +24,16 @@
       "patch": "./cordis.patch.yml"
     }
   },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "deepseek",
+    "vision",
+    "ocr",
+    "multimodal",
+    "image"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",

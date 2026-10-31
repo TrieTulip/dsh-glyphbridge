@@ -22,7 +22,8 @@ same screenshot would reach the vision engine once per turn. See [Behaviour](#be
 The design rationale, the runtime facts it rests on, and the step-by-step build are in
 [GlyphBridge 制作流程.md](<GlyphBridge 制作流程.md>). How it is proven — layers, assertions,
 and the defect the suite caught — is in [检验流程.md](检验流程.md); the two re-runnable check
-scripts live in `verify/`.
+scripts live in `verify/`. Shipping it to other people (GitHub / npm / plugin market / offline
+tarball) is covered in [发布指南.md](发布指南.md).
 
 ## Why a companion route, and not a hook
 
