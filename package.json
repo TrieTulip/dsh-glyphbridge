@@ -1,0 +1,51 @@
+{
+  "name": "dsh-glyphbridge",
+  "version": "0.4.0",
+  "description": "GlyphBridge — a vision bridge for pure-text DeepSeek models in the DeepSeek Harness: a companion provider route that transcribes images into structured text evidence before delegating to the real text adapter.",
+  "license": "MIT",
+  "type": "module",
+  "main": "lib/dsh/index.js",
+  "types": "lib/dsh/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/dsh/index.d.ts",
+      "default": "./lib/dsh/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/**/*.js",
+    "lib/**/*.d.ts",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "clean": "node -e \"require('node:fs').rmSync('lib',{recursive:true,force:true})\""
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": ">=4.0.0 <5",
+    "@deepseek-ai/dsh-attachment": ">=0.2.0-rc.2",
+    "@deepseek-ai/dsh-llm": ">=0.2.0-rc.2",
+    "@deepseek-ai/dsh-tools": ">=0.2.0-rc.2",
+    "@deepseek-ai/schemastery": ">=3.18.0 <4"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-attachment": { "optional": true }
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "4.0.4",
+    "@deepseek-ai/dsh-attachment": "0.2.0-rc.2",
+    "@deepseek-ai/dsh-llm": "0.2.0-rc.2",
+    "@deepseek-ai/dsh-tools": "0.2.0-rc.2",
+    "@deepseek-ai/schemastery": "3.18.4",
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}

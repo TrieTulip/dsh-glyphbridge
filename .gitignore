@@ -1,0 +1,21 @@
+# Dependencies and local scratch
+
+node_modules/
+.pnpm-store/
+
+# Probe/verification scratch: the runtime closure extracted from app.asar
+.probe/node_modules/
+
+# Agent-local notes (never part of the plugin)
+.workbuddy/
+.verify/
+
+# Local transcripts and dumps that may contain a session token or a personal profile
+*.log
+.probe/web-boot*.log
+.probe/web-*.yml
+
+# Editor / OS noise
+.DS_Store
+Thumbs.db
+*.swp

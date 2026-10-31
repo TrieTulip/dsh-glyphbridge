@@ -1,0 +1,51 @@
+# GlyphBridge bundle layer.
+#
+# This list is applied over the profile tree as one patch layer. A new entry is
+# declared with `insert` (a bare `id:` row can only override an entry that
+# already exists); the entry then becomes addressable by `id: glyphbridge`.
+#
+# Entries are not deep-merged: a later layer (the profile's own cordis.patch.yml,
+# or a --patch overlay) that targets `id: glyphbridge` assigns `config` wholesale,
+# replacing the object below. Copy this block into your profile patch to take it
+# over, and delete anything you do not want rather than editing in place.
+#
+# No secret is ever written here: `apiKeyEnv` names an environment variable, and
+# both engine slots ship unconfigured so a fresh install registers the route
+# without pretending to have vision. Fill in `baseUrl` + `model` (+ `apiKeyEnv`
+# when the endpoint needs a bearer token) to turn translation on.
+- insert:
+    - id: glyphbridge
+      name: dsh-glyphbridge
+      config:
+        # The real, already-registered provider route GlyphBridge delegates to.
+        # Both `deepseek-official` (API key) and `deepseek-account` work.
+        targetProvider: deepseek-official
+        # What to do when the target model can see images itself.
+        #   auto   = defer to it: forward untouched, no engine call (default)
+        #   always = translate anyway and hand the model structured evidence
+        translate: auto
+        # Primary vision engine. Empty `baseUrl` or `model` disables the slot.
+        primary:
+          # `vlm` = OpenAI-compatible /chat/completions; `ocr` = OCR API.
+          kind: vlm
+          baseUrl: ''
+          model: ''
+          apiKeyEnv: ''
+          timeoutMs: 20000
+        # Backup vision engine, tried when the primary is unconfigured, times out, or fails.
+        fallback:
+          kind: vlm
+          baseUrl: ''
+          model: ''
+          apiKeyEnv: ''
+          timeoutMs: 20000
+        # Evidence memo. A conversation is replayed whole on every turn, so
+        # without this the same screenshot would reach the vision engine once
+        # per turn. Keys include the engine identity, so editing the slots above
+        # can never serve text they would not have produced.
+        cache:
+          enabled: true
+          maxEntries: 64
+        tool:
+          enabled: true
+          maxImageBytes: 16777216
